@@ -35,8 +35,7 @@ namespace AspImpactaBiblioteca.Models.Entities
 
         public int AutorId { get; set; }
 
-        //public int MyProperty { get; set; }
-
+        
 
     }
 }
