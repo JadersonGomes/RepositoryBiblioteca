@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Página inicial Livros</title>
+    
+    </head>
+
+    <body>
+        <h2>Livros</h2>
+        <p>
+            @Html.ActionLink("Listar", "Listar", "Livro", null, new { @class= "waves-effect waves-light btn" })
+            @Html.ActionLink("Adicionar", "Create", "Livro", null, new { @class = "waves-effect waves-light blue btn" })
+        </p>      
+   
+
+   
+
+    </body>
+</html>

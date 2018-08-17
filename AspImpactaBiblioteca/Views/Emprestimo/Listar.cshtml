@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AspImpactaBiblioteca.Models.Entities.Emprestimo>
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de empréstimos</h2>
+
+<p>@Html.ActionLink("Novo", "Create", "Emprestimo", new { @class = "waves-effect waves-light btn" })</p>
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+   
+    <table class="responsive-table table" id="__AjaxAntiForgeryForm">
+        <thead>
+            <tr>
+                <th>@Html.DisplayName("Nome do cliente")</th>
+                <th>@Html.DisplayName("Nome do livro")</th>
+                <th>@Html.DisplayName("Data de empréstimo")</th>
+                <th>@Html.DisplayName("Data de devolução")</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>                    
+                    <td>@item.Cliente.Nome</td>
+                    <td>@item.Livro.Nome</td>
+                    <td>@item.DataEmprestimo.ToString("dd/MM/yyyy")</td>                    
+
+                    @if (DateTime.Compare(item.DataDevolucao, DateTime.Now) < 0)
+                    {
+
+                        <td style="color: red">@item.DataDevolucao.ToString("dd/MM/yyyy")</td>
+
+                    }
+                    else
+                    {
+                        <td>@item.DataDevolucao.ToString("dd/MM/yyyy")</td>
+                    }
+
+                    
+
+                    <td>
+                        <a href="@Url.Action("Edit", "Emprestimo", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light yellow icones"><i class="material-icons">edit</i></a>
+                        <!--<a class="excluirEmprestimo btn-floating btn-small waves-effect waves-light red icones modal-trigger" data-id="item.Id"><i class="material-icons">delete</i></a>-->
+                        <a href="@Url.Action("Extrato", "Emprestimo", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light blue icones"><i class="material-icons">arrow_back</i></a>
+                    </td>
+                </tr>
+
+            }
+
+
+        </tbody>
+    </table>
+
+}
+
+<div id="modalExcluirEmprestimo" class="modal">
+    <div class="modal-content">
+        <h4>Excluir este Emprestimo?</h4>
+        <p>Ao remover este item, você não poderá recuperá-lo.</p>
+    </div>
+
+    <div class="modal-footer">
+
+        @Html.AntiForgeryToken()
+        <button type="button" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+        <button id="btnConfirmarExclusaoEmprestimo" type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Confirmar</button>
+
+    </div>
+</div>
+

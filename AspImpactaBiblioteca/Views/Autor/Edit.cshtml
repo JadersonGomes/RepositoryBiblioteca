@@ -1,0 +1,47 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Autor
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Autor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        @using (Html.BeginForm("Create", "Autor", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">event_note</i>
+                    @Html.EditorFor(a => a.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    @Html.LabelFor(a => a.Nome)
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Salvar alterações
+                        <i class="material-icons right">send</i>
+                    </button>
+                    @Html.ActionLink("Cancelar", "Listar", "Autor", new { @class = "btn waves-effect waves-light red" })
+
+                </div>
+            </div>
+
+        }
+    </div>
+}
+
+

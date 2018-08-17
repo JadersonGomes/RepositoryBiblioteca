@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/css")        
+        @Scripts.Render("~/bundles/modernizr")
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body class="grey lighten-2">
+        <nav>
+            <div class="nav-wrapper" >
+                <a href="@Url.Action("Index", "Home")" id="brand" class="brand-logo">Biblioteca ipt</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">                    
+                    <li>@Html.ActionLink("Livro", "Index", "Livro")</li>
+                    <li>@Html.ActionLink("Autor", "Index", "Autor")</li>
+                    <li>@Html.ActionLink("Categoria", "Index", "Categoria")</li>
+                    <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+                    <li>@Html.ActionLink("Empréstimo", "Index", "Emprestimo")</li>
+                    <li>@Html.ActionLink("Pagamento", "Index", "Pagamento")</li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/materialize")
+        @Scripts.Render("~/Scripts/main.js")
+        @RenderSection("scripts", required: false)
+
+        <div class="container body-content">
+
+            @RenderBody()
+
+
+            <hr />
+            <footer>
+                <p>&copy;@DateTime.Now.Year - Biblioteca IPT</p>
+            </footer>
+        </div>
+
+
+    </body>
+</html>

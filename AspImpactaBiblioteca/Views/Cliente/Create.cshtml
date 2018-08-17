@@ -1,0 +1,58 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar cliente</h2>
+
+@using (Html.BeginForm("Create", "Cliente", FormMethod.Post, new { @id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="row">
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">event_note</i>
+                @Html.EditorFor(model => model.Nome)
+                @Html.LabelFor(model => model.Nome)
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+                @Html.EditorFor(model => model.Email)
+                @Html.LabelFor(model => model.Email)
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">perm_identity</i>
+                @Html.EditorFor(model => model.Cpf)
+                @Html.LabelFor(model => model.Cpf)
+
+            </div>
+        </div>
+
+        <div class="row">
+            <p>
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Cadastrar
+                    <i class="material-icons right">send</i>
+                </button>
+                @Html.ActionLink("Cancelar", "Listar", "Cliente", new { @class = "waves-effect waves-light red btn" })
+            </p>
+        </div>
+
+    </div>
+
+
+
+
+}

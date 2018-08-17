@@ -1,0 +1,55 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Autor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Cadastrar novo Autor</title>
+
+    </head>
+
+    <body>
+
+        <h3>Cadastro de Autor</h3>
+        <hr />
+
+
+        @using (Html.BeginForm("Create", "Autor", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <div class="row">
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">event_note</i>                                
+                    @Html.EditorFor(a => a.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    @Html.LabelFor(a => a.Nome)                    
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Cadastrar
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                    @Html.ActionLink("Cancelar", "Listar", "Autor", new { @class = "btn waves-effect waves-light red" })
+                </div>
+            </div>
+
+        }        
+
+    </body>
+
+</html>
+

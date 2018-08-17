@@ -1,0 +1,35 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Livro
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<b>@Html.DisplayNameFor(model => model.Nome)</b> <br />
+@Model.Nome
+
+<br /><br />
+
+<b>@Html.DisplayNameFor(model => model.Descricao)</b> <br />
+@Model.Descricao
+
+<br /><br />
+
+<b>@Html.DisplayNameFor(model => model.Quantidade)</b> <br />
+@Model.Quantidade
+
+<br /><br />
+
+<b>@Html.DisplayNameFor(model => model.TotalPaginas)</b> <br />
+@Model.TotalPaginas
+
+<br /><br />
+<a class="waves-effect waves-light btn-small" href="@Url.Action("Listar", "Livro")">Voltar</a>
+<a class="btn-floating btn-small waves-effect waves-light red" href="@Url.Action("Edit", "Livro", new { @id= Model.Id })"><i class="material-icons">edit</i></a>
+
+
+
+

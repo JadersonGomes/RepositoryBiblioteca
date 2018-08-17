@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AspImpactaBiblioteca.Models.Entities.Pagamento>
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Lista de Pagamentos</title>
+
+</head>
+
+<body>
+    <h3>Lista de pagamentos</h3>
+    
+
+    <p>@Html.ActionLink("Novo", "Create", "Pagamento", new { @class = "waves-effect waves-light btn" })</p>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <table id="__AjaxAntiForgeryForm" class="responsive-table table">
+            <thead>
+                <tr>                    
+                    <th>@Html.DisplayNameFor(p => p.Cliente.Nome)</th>
+                    <th>@Html.DisplayNameFor(p => p.ValorPago)</th>
+                    <th>@Html.DisplayNameFor(p => p.FormaPagamento.Nome)</th>
+                    <th>@Html.DisplayNameFor(p => p.DataPagamento)</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+                {
+
+                <tbody>
+                    <tr>
+                        <td>@item.Cliente.Nome</td>
+                        <td>@item.ValorPago</td>
+                        <td>@item.FormaPagamento.Nome</td>
+                        <td>@item.DataPagamento.ToShortDateString()</td>
+
+                        <td>
+                            <a href="@Url.Action("Edit", "Pagamento", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light yellow icones"><i class="material-icons">edit</i></a>
+                            <!--<a href="#modalExcluirAutor" class="excluirAutor btn-floating btn-small waves-effect waves-light red icones modal-trigger" data-id="item.Id"><i class="material-icons">delete</i></a>-->
+                        </td>
+                    </tr>
+                </tbody>
+
+            }
+
+        </table>
+
+
+    }
+
+    <div id="modalExcluirAutor" class="modal">
+        <div class="modal-content">
+            <h4>Excluir este Autor?</h4>
+            <p>Ao remover este item, você não poderá recuperá-lo.</p>
+        </div>
+
+        <div class="modal-footer">
+
+            @Html.AntiForgeryToken()
+            <button type="button" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+            <button id="btnConfirmarExclusaoAutor" type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Confirmar</button>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+

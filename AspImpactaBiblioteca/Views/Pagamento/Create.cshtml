@@ -1,0 +1,72 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Pagamento
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registrar pagamento</h2>
+
+@using (Html.BeginForm("Create", "Pagamento", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="row">
+        
+        @Html.ValidationSummary()
+
+        <div class="row">
+            
+
+            <div class="input-field col s6" >
+                <i class="material-icons prefix">person_outline</i> 
+                @Html.EditorFor(model => model.Cliente.Nome)                
+                @Html.LabelFor(model => model.Cliente.Nome)
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">description</i>
+                @Html.EditorFor(model => model.Cliente.Cpf)
+                @Html.LabelFor(model => model.Cliente.Cpf)
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">date_range</i>
+                @Html.EditorFor(model => model.DataPagamento, new { htmlAttributes = new { @class = "datepicker", @placeholder="Data de pagamento" } })               
+                
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">credit_card</i>
+                @Html.DropDownListFor(model => model.FormaPagamentoId, new SelectList(ViewBag.FormasPagamentos, "Value", "Text"), "Forma de pagamento")              
+                
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="input-field col s6">
+                <i class="material-icons prefix">attach_money</i>
+                @Html.EditorFor(model => model.ValorPago)                
+                @Html.LabelFor(model => model.ValorPago)
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Registrar
+            <i class="material-icons right">send</i>
+        </button>
+
+    </div>
+}
+
+

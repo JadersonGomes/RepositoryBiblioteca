@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    @Html.ActionLink("Listar", "Listar", "Cliente", new { @class = "waves-effect waves-light btn" })
+    @Html.ActionLink("Adicionar", "Create", "Cliente", new { @class = "waves-effect waves-light blue btn" })
+
+</p>
+

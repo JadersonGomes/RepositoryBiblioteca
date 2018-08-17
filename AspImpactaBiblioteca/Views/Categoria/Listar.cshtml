@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AspImpactaBiblioteca.Models.Entities.Categoria>
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de categorias</h2>
+
+
+<div class="row">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <p><a href="@Url.Action("Create", "Categoria")" class="waves-effect waves-light btn">Novo</a></p>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <table class="table responsive-table" id="__AjaxAntiForgeryForm">
+
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nome</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Categoria", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light red icones"><i class="material-icons">edit</i></a>
+                            <a class="excluirCategoria btn-floating btn-small waves-effect waves-light blue icones" data-id="@item.Id"><i class="material-icons">delete</i></a>
+
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+    }
+
+
+
+    <div id="modalExcluirCategoria" class="modal">
+        <div class="modal-content">
+            <h4>Excluir esta categoria?</h4>
+            <p>Atenção! Ao excluir este item, você não poderá recuperá-lo.</p>
+        </div>
+        <div class="modal-footer">
+            @Html.AntiForgeryToken()
+            <button href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+            <button id="btnConfirmarExclusaoCategoria" class="modal-action modal-close waves-effect waves-green btn-flat">Confirmar</button>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+

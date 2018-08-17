@@ -1,0 +1,89 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Livro
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Editar Livro</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="row">
+
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">event_note</i>
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "library_books" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "active" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">description</i>
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "library_books" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "active" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">library_books</i>
+                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "library_books" } })
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "active" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">import_contacts</i>
+                @Html.EditorFor(model => model.TotalPaginas, new { htmlAttributes = new { @class = "library_books" } })
+                @Html.ValidationMessageFor(model => model.TotalPaginas, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.TotalPaginas, htmlAttributes: new { @class = "active" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">person_outline</i>
+                @Html.DropDownListFor(model => model.AutorId, new SelectList(ViewBag.AutoresEditar, "Value", "Text"), "Selecione um Autor")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">content_paste</i>
+                @Html.DropDownListFor(model => model.CategoriaId, new SelectList(ViewBag.CategoriasEditar, "Value", "Text"), "Selecione uma Categoria")
+            </div>
+        </div>
+        
+
+
+        <div class="form-group">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Salvar alterações
+                <i class="material-icons right">send</i>
+            </button>
+
+            @Html.ActionLink("Cancelar", "Listar", "Livro", new { @class = "waves-effect waves-light btn red" })            
+        </div>
+
+
+    </div>
+
+}

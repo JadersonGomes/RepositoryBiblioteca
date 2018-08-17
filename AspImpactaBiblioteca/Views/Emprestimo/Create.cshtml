@@ -1,0 +1,65 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Emprestimo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Realizar empréstimo</h2>
+
+
+@using (Html.BeginForm("Create", "Emprestimo", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="row">
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">library_books</i>
+                @Html.DropDownListFor(model => model.LivroId, new SelectList(ViewBag.LivrosDisponiveis, "Value", "Text"), "Selecione um Livro")
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">person_outline</i>
+                @Html.DropDownListFor(model => model.ClienteId, new SelectList(ViewBag.Clientes, "Value", "Text"), "Selecione um Cliente")
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="input-field col s6">
+                <i class="material-icons prefix">date_range</i>   
+                @Html.EditorFor(model => model.DataEmprestimo, new { htmlAttributes = new { @class = "datepicker", @placeholder= "Data de empréstimo" } })     
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">date_range</i>               
+                @Html.EditorFor(model => model.DataDevolucao, new { htmlAttributes = new { @class = "datepicker", @placeholder = "Data de devolução" } })               
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Cadastrar
+            <i class="material-icons right">send</i>
+        </button>
+
+        @Html.ActionLink("Cancelar", "Listar", "Emprestimo", new { @class = "waves-effect waves-light btn red" })
+
+
+
+
+
+    </div>
+
+
+
+
+}
+
+

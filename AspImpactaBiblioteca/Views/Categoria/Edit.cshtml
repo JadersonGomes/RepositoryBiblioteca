@@ -1,0 +1,34 @@
+﻿@model AspImpactaBiblioteca.Models.Entities.Categoria
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar categoria</h2>
+
+<div class="row">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @using (Html.BeginForm("Edit", "Categoria", FormMethod.Post, new { @id = "__AjaxAntiForgeryToken" }))
+    {
+        <div class="row">
+            <div class="input-field col s6">
+                @Html.EditorFor(model => model.Nome)
+                @Html.LabelFor(model => model.Nome)
+
+            </div>
+        </div>
+
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Cadastrar
+                <i class="material-icons right">send</i>
+            </button>
+
+            @Html.ActionLink("Cancelar", "Listar", "Categoria", new { @class = "waves-effect waves-light red btn" })
+        </div>
+
+    }
+</div>

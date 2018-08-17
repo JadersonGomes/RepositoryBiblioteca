@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AspImpactaBiblioteca.Models.Entities.Livro>
+
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+
+    </head>
+
+    <body>
+        <p>
+            @Html.ActionLink("novo", "Create", null, new { @class = "waves-effect waves-light btn " })
+        </p>
+
+        @using (Html.BeginForm(null, null, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <table id="_AjaxAntiForgeryForm" class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                        <th>@Html.DisplayNameFor(model => model.Quantidade)</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.Nome)</td>
+                            <td>@Html.DisplayFor(model => item.Descricao)</td>
+                            <td>@Html.DisplayFor(model => item.Quantidade)</td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", "Livro", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light red icones"><i class="material-icons">edit</i></a>
+                                <a href="@Url.Action("Details", "Livro", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light yellow icones"><i class="material-icons">details</i></a>
+                                <a class="excluirLivro btn-floating btn-small waves-effect waves-light blue icones" data-id="@item.Id"><i class="material-icons">delete</i></a>
+                                <!--<a href="Url.Action("Delete", "Livro", new { id = item.Id })" class="btn-floating btn-small waves-effect waves-light blue icones right-align"><i class="material-icons">delete</i></a>-->
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        }
+
+        <div id="modalExcluir" class="modal">
+            <div class="modal-content">
+                <h4>Excluir este livro?</h4>     
+                <p>Ao excluir este item, você não poderá recuperá-lo.</p>
+            </div>
+
+            <div class="modal-footer">
+                @Html.AntiForgeryToken()
+                <button type="button" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>               
+                <button type="button" id="btnConfirmarExclusao" class="modal-action modal-close waves-effect waves-green btn-flat">Confirmar</button>
+            </div>
+        </div>
+
+
+    </body>
+</html>
